@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    // base options
+    "esModuleInterop": true,
+    "skipDefaultLibCheck": true,
+    "target": "ES2022",
+    "moduleDetection": "force",
+    "module": "NodeNext",
+    "allowJs": true,
+    "outDir": "dist",
+    "sourceMap": true,
+
+    "lib": ["es2022"]
+  }
+}
