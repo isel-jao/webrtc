@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink, useNavigate } from "react-router";
 import { twMerge } from "tailwind-merge";
 import { cn } from "../../utils/functions";
+import { useGlobalContext } from "@/context";
 
 const links = [
   {
@@ -20,6 +21,7 @@ interface UpbarProps
 
 export default function Upbar({ className, ...props }: UpbarProps) {
   const navigate = useNavigate();
+  const user = useGlobalContext((state) => state.user);
   function SignOut() {
     // sign out logic
     navigate("/login");
@@ -44,12 +46,15 @@ export default function Upbar({ className, ...props }: UpbarProps) {
             {name}
           </NavLink>
         ))}
-        <button
-          onClick={SignOut}
-          className="ml-auto rounded border px-2 py-1 capitalize hover:bg-foreground/10"
-        >
-          sign out
-        </button>
+        <div className="ml-auto flex items-center gap-4">
+          {user && <span className="font-bold capitalize">{user.name}</span>}
+          <button
+            onClick={SignOut}
+            className="rounded border px-2 py-1 capitalize hover:bg-foreground/10"
+          >
+            sign out
+          </button>
+        </div>
       </nav>
     </header>
   );
